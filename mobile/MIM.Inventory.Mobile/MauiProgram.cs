@@ -16,7 +16,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<AppShell>();
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<MainViewModel>();
-        builder.Services.AddHttpClient<ApiService>();
+        builder.Services.AddSingleton(new HttpClient());
+	builder.Services.AddSingleton<ApiService>();
         builder.Services.AddSingleton<IScannerService, ScannerService>();
 
         return builder.Build();

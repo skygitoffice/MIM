@@ -1,8 +1,6 @@
-<winui:Application
+<maui:MauiWinUIApplication
     x:Class="MIM.Inventory.Mobile.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:winui="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-    <winui:Application.Resources>
-    </winui:Application.Resources>
-</winui:Application>
+    xmlns:maui="using:Microsoft.Maui">
+</maui:MauiWinUIApplication>
