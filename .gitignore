@@ -1,9 +1,20 @@
+# Visual Studio
 .vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# VS caches (sometimes under subfolders)
 **/.vs/
+**/*.v2
+**/*.bin
+**/*.dtbcache
+**/*.futdcache
+
 **/bin/
 **/obj/
-*.user
-*.suo
+
 mobile/MIM.Inventory.Mobile/appsettings.Development.json
 
 mobile/.vs/MIM.Inventory.Mobile/CopilotIndices/17.14.1091.29919/CodeChunks.db
