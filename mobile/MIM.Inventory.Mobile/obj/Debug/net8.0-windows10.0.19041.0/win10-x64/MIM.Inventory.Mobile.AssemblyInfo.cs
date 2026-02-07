@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MIM.Inventory.Mobile")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+6c9c5ccde230f4685162c07911cd0809a2414866")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+48ab59c1719758503f36e114d9baebdd9d92af37")]
 [assembly: System.Reflection.AssemblyProductAttribute("MIM.Inventory.Mobile")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MIM.Inventory.Mobile")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
