@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MIM.Inventory.Mobile.Pages.StocktakePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="盤點作業">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12">
+            <Entry Placeholder="盤點單號" Text="{Binding StocktakeNo}" />
+            <Entry Placeholder="倉庫" Text="{Binding Warehouse}" />
+
+            <Label Text="盤點明細" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding Items}" HeightRequest="180">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="8" Margin="0,4" BorderColor="#DDDDDD">
+                            <Label Text="{Binding .}" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="送出" Command="{Binding SubmitCommand}" />
+            <Label Text="{Binding StatusMessage}" TextColor="Gray" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
