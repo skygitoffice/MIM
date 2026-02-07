@@ -9,5 +9,14 @@ namespace MIM.Inventory.Mobile.Pages
             InitializeComponent();
             BindingContext = viewModel;
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            if (BindingContext is IssueViewModel viewModel)
+            {
+                await viewModel.InitializeAsync();
+            }
+        }
     }
 }

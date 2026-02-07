@@ -4,6 +4,7 @@
 **/obj/
 *.user
 *.suo
+mobile/MIM.Inventory.Mobile/appsettings.Development.json
 
 mobile/.vs/MIM.Inventory.Mobile/CopilotIndices/17.14.1091.29919/CodeChunks.db
 mobile/.vs/MIM.Inventory.Mobile/CopilotIndices/17.14.1091.29919/SemanticSymbols.db

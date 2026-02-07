@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MIM.Inventory.Mobile.Pages.IssueDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="領料單明細">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12">
+            <Label Text="領料單資訊" FontAttributes="Bold" />
+            <Frame Padding="12" BorderColor="#DDDDDD">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="單號" FontAttributes="Bold" />
+                    <Label Text="{Binding DiffVoucherno}" />
+                    <Label Text="日期" FontAttributes="Bold" />
+                    <Label Text="{Binding IssuingDate}" />
+                    <Label Text="工單/機台" FontAttributes="Bold" />
+                    <Label Text="{Binding MachineNo}" />
+                    <Label Text="領料人" FontAttributes="Bold" />
+                    <Label Text="{Binding IssuedBy}" />
+                    <Label Text="備註" FontAttributes="Bold" />
+                    <Label Text="{Binding Remark}" />
+                    <Label Text="狀態" FontAttributes="Bold" />
+                    <Label Text="{Binding StatusText}" TextColor="{Binding StatusColor}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label Text="領料明細" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding Lines}" HeightRequest="220">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="8" Margin="0,4" BorderColor="#DDDDDD">
+                            <Label Text="{Binding DisplayText}" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="註銷" Command="{Binding VoidCommand}" />
+            <Button Text="重新整理" Command="{Binding RefreshCommand}" />
+            <Label Text="{Binding StatusMessage}" TextColor="{Binding MessageColor}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

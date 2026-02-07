@@ -6,23 +6,38 @@
     Title="領料作業">
     <ScrollView>
         <VerticalStackLayout Padding="16" Spacing="12">
-            <Entry Placeholder="領料單號" Text="{Binding IssueNo}" />
-            <Entry Placeholder="領料人" Text="{Binding Requester}" />
-            <Entry Placeholder="成本中心" Text="{Binding CostCenter}" />
+            <Label Text="DB 狀態" FontAttributes="Bold" />
+            <Label Text="{Binding DbStatusText}" TextColor="{Binding DbStatusColor}" />
 
-            <Label Text="領料明細" FontAttributes="Bold" />
-            <CollectionView ItemsSource="{Binding Items}" HeightRequest="180">
+            <Label Text="領料輸入" FontAttributes="Bold" />
+            <Entry Placeholder="工單" Text="{Binding WorkOrder}" />
+            <Entry Placeholder="料號或RFID" Text="{Binding MaterialOrRfid}" />
+            <Entry Placeholder="數量 (g)" Keyboard="Numeric" Text="{Binding Quantity}" />
+            <Entry Placeholder="備註" Text="{Binding Remark}" />
+
+            <Button Text="提交" Command="{Binding SubmitCommand}" />
+            <Label Text="{Binding StatusMessage}" TextColor="{Binding StatusColor}" />
+
+            <HorizontalStackLayout Spacing="8">
+                <Label Text="歷史/查詢" FontAttributes="Bold" />
+                <Button Text="重新整理" Command="{Binding RefreshCommand}" />
+            </HorizontalStackLayout>
+
+            <CollectionView ItemsSource="{Binding RecentIssues}" SelectionMode="Single" SelectionChangedCommand="{Binding SelectIssueCommand}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame Padding="8" Margin="0,4" BorderColor="#DDDDDD">
-                            <Label Text="{Binding .}" />
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="{Binding DiffVoucherno}" FontAttributes="Bold" />
+                                <Label Text="{Binding IssuingDate}" />
+                                <Label Text="{Binding MachineNo}" />
+                                <Label Text="{Binding IssuedBy}" />
+                                <Label Text="{Binding StatusText}" TextColor="{Binding StatusColor}" />
+                            </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-            <Button Text="送出" Command="{Binding SubmitCommand}" />
-            <Label Text="{Binding StatusMessage}" TextColor="Gray" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
