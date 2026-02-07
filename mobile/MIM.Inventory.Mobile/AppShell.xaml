@@ -3,13 +3,31 @@
     x:Class="MIM.Inventory.Mobile.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MIM.Inventory.Mobile"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:pages="clr-namespace:MIM.Inventory.Mobile.Pages"
+    Shell.FlyoutBehavior="Flyout"
     Title="MIM.Inventory.Mobile">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem Title="調撥作業">
+        <ShellContent
+            ContentTemplate="{DataTemplate pages:TransferPage}"
+            Route="TransferPage" />
+    </FlyoutItem>
 
+    <FlyoutItem Title="領料作業">
+        <ShellContent
+            ContentTemplate="{DataTemplate pages:IssuePage}"
+            Route="IssuePage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="盤點作業">
+        <ShellContent
+            ContentTemplate="{DataTemplate pages:StocktakePage}"
+            Route="StocktakePage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="註銷作業">
+        <ShellContent
+            ContentTemplate="{DataTemplate pages:VoidPage}"
+            Route="VoidPage" />
+    </FlyoutItem>
 </Shell>
