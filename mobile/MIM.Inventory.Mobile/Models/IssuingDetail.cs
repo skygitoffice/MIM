@@ -9,13 +9,13 @@ namespace MIM.Inventory.Mobile.Models
         public long Id { get; set; }
 
         [Column("issuing_id")]
-        public int IssuingId { get; set; }
+        public long IssuingId { get; set; }
 
         [Column("material_id")]
-        public int? MaterialId { get; set; }
+        public long? MaterialId { get; set; }
 
         [Column("vendor_id")]
-        public int? VendorId { get; set; }
+        public long? VendorId { get; set; }
 
         [Column("bucket_rfid")]
         public string? BucketRfid { get; set; }

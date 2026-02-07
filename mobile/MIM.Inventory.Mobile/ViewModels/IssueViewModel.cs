@@ -144,15 +144,15 @@ namespace MIM.Inventory.Mobile.ViewModels
                 return;
             }
 
-            int? materialId = null;
-            if (int.TryParse(MaterialOrRfid, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedId))
+            long? materialId = null;
+            if (long.TryParse(MaterialOrRfid, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedId))
             {
                 materialId = parsedId;
             }
 
             var request = new IssueCreateRequest
             {
-                WarehouseId = 1,
+                WarehouseId = 1L,
                 IssuingDate = DateTime.Today,
                 MachineNo = WorkOrder,
                 Destination = "機台",

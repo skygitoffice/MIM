@@ -43,7 +43,7 @@ namespace MIM.Inventory.Mobile.Repositories
 
             var detail = new IssuingDetail
             {
-                IssuingId = (int)order.Id,
+                IssuingId = order.Id,
                 MaterialId = request.MaterialId,
                 VendorId = request.VendorId,
                 BucketRfid = request.MaterialOrRfid,
