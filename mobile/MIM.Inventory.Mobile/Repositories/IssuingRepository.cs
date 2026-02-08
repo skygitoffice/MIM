@@ -75,7 +75,7 @@ namespace MIM.Inventory.Mobile.Repositories
                     IssuingDate = order.IssuingDate,
                     MachineNo = order.MachineNo,
                     IssuedBy = order.IssuedBy,
-                    IsValid = order.IsValid
+                    IsValid = order.IsValid ?? true
                 })
                 .ToListAsync(cancellationToken);
         }

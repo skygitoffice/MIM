@@ -27,7 +27,7 @@ namespace MIM.Inventory.Mobile.Models
         public string? IssuedBy { get; set; }
 
         [Column("is_valid")]
-        public bool IsValid { get; set; }
+        public bool? IsValid { get; set; } = true;
 
         [Column("remark")]
         public string? Remark { get; set; }

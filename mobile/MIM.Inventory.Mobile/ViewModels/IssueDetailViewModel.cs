@@ -121,14 +121,15 @@ namespace MIM.Inventory.Mobile.ViewModels
                     return;
                 }
 
+                var isValid = document.Header.IsValid ?? true;
                 DiffVoucherno = document.Header.DiffVoucherno;
                 IssuingDate = document.Header.IssuingDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
                 MachineNo = document.Header.MachineNo;
                 IssuedBy = document.Header.IssuedBy ?? "";
                 Remark = document.Header.Remark ?? "";
-                CanVoid = document.Header.IsValid;
-                StatusText = document.Header.IsValid ? "有效" : "已註銷";
-                StatusColor = document.Header.IsValid ? Colors.Green : Colors.OrangeRed;
+                CanVoid = isValid;
+                StatusText = isValid ? "有效" : "已註銷";
+                StatusColor = isValid ? Colors.Green : Colors.OrangeRed;
 
                 Lines.Clear();
                 foreach (var line in document.Lines)
