@@ -39,7 +39,14 @@ namespace MIM.Inventory.Mobile
                 throw new InvalidOperationException("Database:ConnectionString is not configured.");
             }
 
-            builder.Services.AddDbContextFactory<MimDbContext>(options => options.UseNpgsql(connectionString));
+            builder.Services.AddDbContextFactory<MimDbContext>(options =>
+            {
+                options.UseNpgsql(connectionString);
+#if DEBUG
+                options.EnableSensitiveDataLogging();
+                options.LogTo(message => System.Diagnostics.Debug.WriteLine(message), LogLevel.Information);
+#endif
+            });
 
             builder.Services.AddSingleton<ITransferService, TransferService>();
             builder.Services.AddSingleton<IIssueService, IssueService>();

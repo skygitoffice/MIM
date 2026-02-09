@@ -19,7 +19,11 @@ namespace MIM.Inventory.Mobile.Data
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.DiffVoucherno).IsRequired();
                 entity.Property(e => e.MachineNo).IsRequired();
-                entity.Property(e => e.IsValid).HasDefaultValue(true);
+                entity.Property(e => e.IsValid)
+                    .HasColumnName("is_valid")
+                    .HasDefaultValue(true)
+                    .IsRequired()
+                    .ValueGeneratedNever();
                 entity.Property(e => e.IssuingDate).HasColumnType("date");
                 entity.Property(e => e.CreateTime).HasColumnType("timestamp");
                 entity.Property(e => e.UpdateTime).HasColumnType("timestamp");

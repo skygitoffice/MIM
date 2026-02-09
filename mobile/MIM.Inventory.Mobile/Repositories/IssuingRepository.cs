@@ -1,4 +1,7 @@
+using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MIM.Inventory.Mobile.Data;
 using MIM.Inventory.Mobile.Models;
 
@@ -7,10 +10,12 @@ namespace MIM.Inventory.Mobile.Repositories
     public class IssuingRepository : IIssuingRepository
     {
         private readonly IDbContextFactory<MimDbContext> _dbContextFactory;
+        private readonly ILogger<IssuingRepository> _logger;
 
-        public IssuingRepository(IDbContextFactory<MimDbContext> dbContextFactory)
+        public IssuingRepository(IDbContextFactory<MimDbContext> dbContextFactory, ILogger<IssuingRepository> logger)
         {
             _dbContextFactory = dbContextFactory;
+            _logger = logger;
         }
 
         public async Task<IssueDocument> CreateIssueAsync(IssueCreateRequest request, CancellationToken cancellationToken = default)
@@ -39,6 +44,7 @@ namespace MIM.Inventory.Mobile.Repositories
             };
 
             dbContext.IssuingOrders.Add(order);
+            LogTrackedEntries(dbContext, "Before SaveChanges (IssuingOrder)");
             await dbContext.SaveChangesAsync(cancellationToken);
 
             var detail = new IssuingDetail
@@ -52,6 +58,7 @@ namespace MIM.Inventory.Mobile.Repositories
             };
 
             dbContext.IssuingDetails.Add(detail);
+            LogTrackedEntries(dbContext, "Before SaveChanges (IssuingDetail)");
             await dbContext.SaveChangesAsync(cancellationToken);
 
             await transaction.CommitAsync(cancellationToken);
@@ -150,6 +157,31 @@ namespace MIM.Inventory.Mobile.Repositories
             }
 
             return $"{prefix}{sequence:000}";
+        }
+
+        private void LogTrackedEntries(DbContext dbContext, string stage)
+        {
+#if DEBUG
+            foreach (var entry in dbContext.ChangeTracker.Entries())
+            {
+                var keyValues = entry.Properties
+                    .Where(p => p.Metadata.IsPrimaryKey())
+                    .Select(p => $"{p.Metadata.Name}={p.CurrentValue ?? "null"}");
+
+                var isValidProperty = entry.Properties
+                    .FirstOrDefault(p => string.Equals(p.Metadata.Name, nameof(IssuingOrder.IsValid), StringComparison.OrdinalIgnoreCase));
+
+                var isValidValue = isValidProperty?.CurrentValue?.ToString() ?? "n/a";
+
+                _logger.LogDebug(
+                    "{Stage}: {EntityType} state={State} keys=[{Keys}] is_valid={IsValid}",
+                    stage,
+                    entry.Metadata.ClrType.Name,
+                    entry.State,
+                    string.Join(", ", keyValues),
+                    isValidValue);
+            }
+#endif
         }
     }
 }
