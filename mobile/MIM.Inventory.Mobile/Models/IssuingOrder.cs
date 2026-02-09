@@ -12,7 +12,7 @@ namespace MIM.Inventory.Mobile.Models
         public string DiffVoucherno { get; set; } = string.Empty;
 
         [Column("warehouse_id")]
-        public int WarehouseId { get; set; }
+        public long WarehouseId { get; set; }
 
         [Column("issuing_date")]
         public DateTime IssuingDate { get; set; }
